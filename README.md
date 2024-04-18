@@ -6,7 +6,7 @@ This crate provides basic utilities that help you develop [custom GitHub Actions
 
 ```rust
 use gha::github_workspace;
-use std::io::File;
+use std::fs::File;
 
 let workspace = File::open(github_workspace().append("config.yaml"))?;
 ```
