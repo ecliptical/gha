@@ -1,0 +1,15 @@
+[package]
+name = "gha"
+version = "0.1.0"
+authors = ["Peter Nehrer <pnehrer@eclipticalsoftware.com>"]
+repository = "https://github.com/ecliptical/gha"
+description = """
+Utilities for developing custom GitHub Actions.
+"""
+categories = [
+    "development-tools",
+]
+keywords = ["github-action", "utilities"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.70"
