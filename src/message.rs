@@ -4,7 +4,7 @@
 #[macro_export]
 macro_rules! debug {
     ($($arg:tt)*) => {
-        println!("::debug::{}", $($arg)*);
+        println!("::debug::{}", format!($($arg)*));
     };
 }
 
