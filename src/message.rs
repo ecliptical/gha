@@ -3,8 +3,8 @@
 /// Outputs a [debug message](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-a-debug-message).
 #[macro_export]
 macro_rules! debug {
-    ($message:expr) => {
-        println!("::debug::{}", $message);
+    ($($arg:tt)*) => {
+        println!("::debug::{}", $($arg)*);
     };
 }
 
