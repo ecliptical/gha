@@ -19,5 +19,5 @@ Easily generate [workflow commands](https://docs.github.com/en/actions/using-wor
 use gha::{debug, error};
 
 debug!("current dir: {:#?}", std::env::current_dir());
-error!("Invalid value", title = "Validator", line = 42);
+error!(title = "Validator", line = 42, "Invalid value");
 ```
