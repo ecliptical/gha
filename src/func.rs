@@ -133,6 +133,7 @@ int_func!(GITHUB_RUN_ID, github_run_id);
 int_func!(GITHUB_RUN_NUMBER, github_run_number);
 str_func!(GITHUB_SERVER_URL, github_server_url);
 str_func!(GITHUB_SHA, github_sha);
+path_func!(GITHUB_STATE, github_state);
 path_func!(GITHUB_STEP_SUMMARY, github_step_summary);
 str_func!(GITHUB_TRIGGERING_ACTOR, github_triggering_actor);
 str_func!(GITHUB_WORKFLOW, github_workflow);

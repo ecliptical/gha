@@ -170,6 +170,11 @@ decl_const!(
 );
 
 decl_const!(
+    /// The path on the runner to the file that may be used to [share state with pre: and post: actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#sending-values-to-the-pre-and-post-actions).
+    GITHUB_STATE
+);
+
+decl_const!(
     /// The path on the runner to the file that contains job summaries from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/_layout/_work/_temp/_runner_file_commands/step_summary_1cb22d7f-5663-41a8-9ffc-13472605c76c`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary)."
     GITHUB_STEP_SUMMARY
 );
