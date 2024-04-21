@@ -8,7 +8,8 @@ This crate provides basic utilities that help you develop [custom GitHub Actions
 use gha::github_workspace;
 use std::fs::File;
 
-let workspace = File::open(github_workspace().append("config.yaml"))?;
+let workspace = github_workspace();
+let my_file = File::open(workspace.append("my_file.yaml"))?
 ```
 
 ## Messages
