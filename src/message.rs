@@ -4,7 +4,9 @@
 #[macro_export]
 macro_rules! debug {
     ($($arg:tt)*) => {
-        println!("::debug::{}", format!($($arg)*));
+        for line in format!($($arg)*).lines() {
+            println!("::debug::{line}");
+        }
     };
 }
 
@@ -257,50 +259,50 @@ macro_rules! message {
     ($type:expr, title = $title:tt, file = $file:tt, line = $line:tt, end_line = $end_line:tt, col = $col:tt, end_col = $end_col:tt, $($arg:tt)*) => {
         println!(
             "::{} title={},file={},line={},endLine={},col={},endColumn={}::{}",
-            $type, $title, $file, $line, $end_line, $col, $end_col, format!($($arg)*)
+            $type, $title, $file, $line, $end_line, $col, $end_col, format!($($arg)*).replace('\n', " ")
         );
     };
 
     ($type:expr, title = $title:tt, file = $file:tt, line = $line:tt, col = $col:tt, end_col = $end_col:tt, $($arg:tt)*) => {
         println!(
             "::{} title={},file={},line={},col={},endColumn={}::{}",
-            $type, $title, $file, $line, $col, $end_col, format!($($arg)*)
+            $type, $title, $file, $line, $col, $end_col, format!($($arg)*).replace('\n', " ")
         );
     };
 
     ($type:expr, title = $title:tt, file = $file:tt, line = $line:tt, end_line = $end_line:tt, col = $col:tt, $($arg:tt)*) => {
         println!(
             "::{} title={},file={},line={},endLine={},col={}::{}",
-            $type, $title, $file, $line, $end_line, $col, format!($($arg)*)
+            $type, $title, $file, $line, $end_line, $col, format!($($arg)*).replace('\n', " ")
         );
     };
     ($type:expr, title = $title:tt, file = $file:tt, line = $line:tt, end_line = $end_line:tt, $($arg:tt)*) => {
         println!(
             "::{} title={},file={},line={},endLine={}::{}",
-            $type, $title, $file, $line, $end_line, format!($($arg)*)
+            $type, $title, $file, $line, $end_line, format!($($arg)*).replace('\n', " ")
         );
     };
 
     ($type:expr, title = $title:tt, file = $file:tt, line = $line:tt, col = $col:tt, $($arg:tt)*) => {
         println!(
             "::{} title={},file={},line={},col={}::{}",
-            $type, $title, $file, $line, $col, format!($($arg)*)
+            $type, $title, $file, $line, $col, format!($($arg)*).replace('\n', " ")
         );
     };
 
     ($type:expr, title = $title:tt, file = $file:tt, line = $line:tt, $($arg:tt)*) => {
         println!(
             "::{} title={},file={},line={}::{}",
-            $type, $title, $file, $line, format!($($arg)*)
+            $type, $title, $file, $line, format!($($arg)*).replace('\n', " ")
         );
     };
 
     ($type:expr, title = $title:tt, file = $file:tt, $($arg:tt)*) => {
-        println!("::{} title={},file={}::{}", $type, $title, $file, format!($($arg)*));
+        println!("::{} title={},file={}::{}", $type, $title, $file, format!($($arg)*).replace('\n', " "));
     };
 
     ($type:expr, title = $title:tt, $($arg:tt)*) => {
-        println!("::{} title={}::{}", $type, $title, format!($($arg)*));
+        println!("::{} title={}::{}", $type, $title, format!($($arg)*).replace('\n', " "));
     };
 }
 
@@ -338,6 +340,18 @@ mod tests {
             file = "test file",
             line = 2,
             end_line = 3,
+            "test msg"
+        );
+    }
+
+    #[test]
+    fn notice_end_line_col() {
+        notice!(
+            title = "test title",
+            file = "test file",
+            line = 2,
+            end_line = 3,
+            col = 1,
             "test msg"
         );
     }
@@ -411,6 +425,18 @@ mod tests {
     }
 
     #[test]
+    fn warning_end_line_col() {
+        warning!(
+            title = "test title",
+            file = "test file",
+            line = 2,
+            end_line = 3,
+            col = 1,
+            "test msg"
+        );
+    }
+
+    #[test]
     fn warning_col() {
         warning!(
             title = "test title",
@@ -474,6 +500,18 @@ mod tests {
             file = "test file",
             line = 2,
             end_line = 3,
+            "test msg"
+        );
+    }
+
+    #[test]
+    fn error_end_line_col() {
+        error!(
+            title = "test title",
+            file = "test file",
+            line = 2,
+            end_line = 3,
+            col = 1,
             "test msg"
         );
     }
