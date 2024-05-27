@@ -22,3 +22,11 @@ use gha::{debug, error};
 debug!("current dir: {:#?}", std::env::current_dir());
 error!(title = "Validator", line = 42, "Invalid value");
 ```
+
+## Project Template
+
+To get started with [GitHub Actions in Rust](https://www.educative.io/blog/custom-github-actions-in-rust), use the following [project template](https://github.com/ecliptical/rust-gha-template):
+
+```
+cargo generate https://github.com/ecliptical/rust-gha-template
+```
