@@ -11,7 +11,7 @@ pub fn end_group() {
 }
 
 /// Perform arbitrary logic in the context of a log line group.
-pub fn group<F: FnOnce() -> ()>(title: &str, f: F) {
+pub fn group<F: FnOnce()>(title: &str, f: F) {
     start_group(title);
     f();
     end_group();
