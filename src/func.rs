@@ -151,6 +151,14 @@ enum_func!(
 );
 
 int_func!(RUNNER_DEBUG, runner_debug);
+enum_func!(
+    RUNNER_ENVIRONMENT,
+    runner_environment,
+    RunnerEnvironment,
+    GitHubHosted = "github-hosted",
+    SelfHosted = "self-hosted"
+);
+
 str_func!(RUNNER_NAME, runner_name);
 enum_func!(
     RUNNER_OS,

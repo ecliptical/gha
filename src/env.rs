@@ -215,6 +215,11 @@ decl_const!(
 );
 
 decl_const!(
+    /// The environment of the runner executing the job. Possible values are: `github-hosted` for GitHub-hosted runners provided by GitHub, and `self-hosted` for self-hosted runners configured by the repository owner.
+    RUNNER_ENVIRONMENT
+);
+
+decl_const!(
     /// The name of the runner executing the job. This name may not be unique in a workflow run as runners at the repository and organization levels could use the same name. For example, `Hosted Agent`
     RUNNER_NAME
 );
