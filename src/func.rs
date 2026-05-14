@@ -173,6 +173,11 @@ path_func!(RUNNER_TEMP, runner_temp);
 path_func!(RUNNER_TOOL_CACHE, runner_tool_cache);
 
 #[cfg(test)]
+#[allow(
+    clippy::overly_complex_bool_expr,
+    clippy::double_comparisons,
+    clippy::len_zero
+)]
 mod tests {
     use super::*;
 

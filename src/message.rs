@@ -1,6 +1,6 @@
-//! Macros for [workflow commands](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions).
+//! Macros for [workflow commands](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands).
 
-/// Outputs a [debug message](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-a-debug-message).
+/// Outputs a [debug message](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-debug-message).
 #[macro_export]
 macro_rules! debug {
     ($($arg:tt)*) => {
@@ -10,7 +10,53 @@ macro_rules! debug {
     };
 }
 
-/// Outputs a [notice message](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-a-notice-message).
+/// [Masks a value](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#masking-a-value-in-a-log)
+/// in the log so that the runner replaces it with `***` whenever it appears
+/// in subsequent output.
+///
+/// Register the value with `mask!` *before* it is printed in any other workflow
+/// command or log line.
+#[macro_export]
+macro_rules! mask {
+    ($($arg:tt)*) => {
+        println!("::add-mask::{}", format!($($arg)*).replace('\n', " "));
+    };
+}
+
+/// Emits an [error message](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-error-message)
+/// and immediately exits the current process with status code `1`.
+///
+/// This mirrors the `core.setFailed` shortcut from the actions toolkit.
+#[macro_export]
+macro_rules! set_failed {
+    ($($arg:tt)*) => {{
+        println!("::error::{}", format!($($arg)*).replace('\n', " "));
+        std::process::exit(1);
+    }};
+}
+
+/// [Stops processing](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#stopping-and-starting-workflow-commands)
+/// any workflow commands until the matching [resume_commands!] is emitted with
+/// the same token.
+///
+/// The token must be unique per run; a freshly generated UUID is recommended.
+#[macro_export]
+macro_rules! stop_commands {
+    ($token:expr) => {
+        println!("::stop-commands::{}", $token);
+    };
+}
+
+/// Resumes processing of workflow commands previously paused with [stop_commands!].
+/// The token must match the one passed to [stop_commands!].
+#[macro_export]
+macro_rules! resume_commands {
+    ($token:expr) => {
+        println!("::{}::", $token);
+    };
+}
+
+/// Outputs a [notice message](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-notice-message).
 #[macro_export]
 macro_rules! notice {
     (title = $title:tt, file = $file:tt, line = $line:tt, end_line = $end_line:tt, col = $col:tt, end_col = $end_col:tt, $($arg:tt)*) => {
@@ -91,7 +137,7 @@ macro_rules! notice {
     };
 }
 
-/// Outputs a [warning message](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-a-warning-message).
+/// Outputs a [warning message](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-a-warning-message).
 #[macro_export]
 macro_rules! warning {
     (title = $title:tt, $($arg:tt)*) => {
@@ -172,7 +218,7 @@ macro_rules! warning {
     };
 }
 
-/// Outputs an [error message](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-error-message).
+/// Outputs an [error message](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-error-message).
 #[macro_export]
 macro_rules! error {
     (title = $title:tt, $($arg:tt)*) => {
@@ -551,5 +597,21 @@ mod tests {
             "test msg {}",
             1
         );
+    }
+
+    #[test]
+    fn mask_msg() {
+        mask!("super-secret");
+    }
+
+    #[test]
+    fn mask_fmt() {
+        mask!("token-{}", 42);
+    }
+
+    #[test]
+    fn stop_resume_commands() {
+        stop_commands!("my-end-token-abc");
+        resume_commands!("my-end-token-abc");
     }
 }

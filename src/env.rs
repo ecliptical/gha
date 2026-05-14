@@ -1,4 +1,4 @@
-//! [Default environment variables](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables)
+//! [Default environment variables](https://docs.github.com/en/actions/reference/variables-reference#default-environment-variables)
 
 macro_rules! decl_const {
     (
@@ -16,7 +16,7 @@ decl_const!(
 );
 
 decl_const!(
-    /// The name of the action currently running, or the [id](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsid) of a step. For example, for an action, `__repo-owner_name-of-action-repo`.
+    /// The name of the action currently running, or the [id](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepsid) of a step. For example, for an action, `__repo-owner_name-of-action-repo`.
     ///
     /// GitHub removes special characters, and uses the name `__run` when the current step runs a script without an `id`. If you use the same script or action more than once in the same job, the name will include a suffix that consists of the sequence number preceded by an underscore. For example, the first script you run will have the name `__run`, and the second script will be named `__run_2`. Similarly, the second invocation of `actions/checkout` will be `actionscheckout2`.
     GITHUB_ACTION
@@ -58,7 +58,7 @@ decl_const!(
 );
 
 decl_const!(
-    /// The path on the runner to the file that sets variables from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/work/_temp/_runner_file_commands/set_env_87406d6e-4979-4d42-98e1-3dab1f48b13a`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable)."
+    /// The path on the runner to the file that sets variables from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/work/_temp/_runner_file_commands/set_env_87406d6e-4979-4d42-98e1-3dab1f48b13a`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable)."
     GITHUB_ENV
 );
 
@@ -83,17 +83,17 @@ decl_const!(
 );
 
 decl_const!(
-    /// The [job_id](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_id) of the current job. For example, `greeting_job`.
+    /// The [job_id](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_id) of the current job. For example, `greeting_job`.
     GITHUB_JOB
 );
 
 decl_const!(
-    /// The path on the runner to the file that sets the current step's outputs from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/work/_temp/_runner_file_commands/set_output_a50ef383-b063-46d9-9157-57953fc9f3f0`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter)."
+    /// The path on the runner to the file that sets the current step's outputs from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/work/_temp/_runner_file_commands/set_output_a50ef383-b063-46d9-9157-57953fc9f3f0`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-output-parameter)."
     GITHUB_OUTPUT
 );
 
 decl_const!(
-    /// The path on the runner to the file that sets system `PATH` variables from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/work/_temp/_runner_file_commands/add_path_899b9445-ad4a-400c-aa89-249f18632cf5`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-system-path)."
+    /// The path on the runner to the file that sets system `PATH` variables from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/work/_temp/_runner_file_commands/add_path_899b9445-ad4a-400c-aa89-249f18632cf5`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#adding-a-system-path)."
     GITHUB_PATH
 );
 
@@ -165,17 +165,17 @@ decl_const!(
 );
 
 decl_const!(
-    /// The commit SHA that triggered the workflow. The value of this commit SHA depends on the event that triggered the workflow. For more information, see "[Events that trigger workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)." For example, `ffac537e6cbbf934b08745a378932722df287a53`.
+    /// The commit SHA that triggered the workflow. The value of this commit SHA depends on the event that triggered the workflow. For more information, see "[Events that trigger workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)." For example, `ffac537e6cbbf934b08745a378932722df287a53`.
     GITHUB_SHA
 );
 
 decl_const!(
-    /// The path on the runner to the file that may be used to [share state with pre: and post: actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#sending-values-to-the-pre-and-post-actions).
+    /// The path on the runner to the file that may be used to [share state with pre: and post: actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#sending-values-to-the-pre-and-post-actions).
     GITHUB_STATE
 );
 
 decl_const!(
-    /// The path on the runner to the file that contains job summaries from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/_layout/_work/_temp/_runner_file_commands/step_summary_1cb22d7f-5663-41a8-9ffc-13472605c76c`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary)."
+    /// The path on the runner to the file that contains job summaries from workflow commands. This file is unique to the current step and changes for each step in a job. For example, `/home/runner/_layout/_work/_temp/_runner_file_commands/step_summary_1cb22d7f-5663-41a8-9ffc-13472605c76c`. For more information, see "[Workflow commands for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#adding-a-job-summary)."
     GITHUB_STEP_SUMMARY
 );
 
@@ -210,7 +210,7 @@ decl_const!(
 );
 
 decl_const!(
-    /// This is set only if [debug logging](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging) is enabled, and always has the value of `1`. It can be useful as an indicator to enable additional debugging or verbose logging in your own job steps.
+    /// This is set only if [debug logging](https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging) is enabled, and always has the value of `1`. It can be useful as an indicator to enable additional debugging or verbose logging in your own job steps.
     RUNNER_DEBUG
 );
 
@@ -235,6 +235,6 @@ decl_const!(
 );
 
 decl_const!(
-    /// The path to the directory containing preinstalled tools for GitHub-hosted runners. For more information, see "[Using GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-software)". For example, `C:\hostedtoolcache\windows`
+    /// The path to the directory containing preinstalled tools for GitHub-hosted runners. For more information, see "[Using GitHub-hosted runners](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners#preinstalled-software-for-github-owned-images)". For example, `C:\hostedtoolcache\windows`
     RUNNER_TOOL_CACHE
 );

@@ -1,4 +1,4 @@
-//! [Grouping log lines](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#grouping-log-lines)
+//! [Grouping log lines](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#grouping-log-lines)
 
 /// Mark the start of the log line group.
 pub fn start_group(title: &str) {
